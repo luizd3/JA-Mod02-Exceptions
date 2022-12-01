@@ -12,15 +12,15 @@ public class AlunoService {
 
     public List<String> findAll() {
         // Pegar o caminho de um arquivo que está dentro da pasta Resources e salvar numa variável:
-        String caminho = AlunoService.class.getClassLoader()
-                .getResource("alunos.txt").getPath();
+//        String caminho = AlunoService.class.getClassLoader()
+//                .getResource("alunos.txt").getPath();
 
-//        Path caminho = new File(getClass()
-//                .getResource("/alunos.txt")
-//                .getFile()).toPath();
+        Path caminho = new File(getClass()
+                .getResource("/alunos.txt")
+                .getFile()).toPath();
 
         try {
-            List<String> alunos = Files.readAllLines(Path.of(caminho)); // Alternativa: Paths.get(caminho)
+            List<String> alunos = Files.readAllLines(caminho); // Alternativa: Paths.get(caminho)
             return alunos;
         } catch (IOException ioException) {
             return Collections.emptyList();
