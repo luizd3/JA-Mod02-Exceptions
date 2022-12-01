@@ -21,9 +21,13 @@ public class AlunoService {
 
         try {
             List<String> alunos = Files.readAllLines(caminho); // Alternativa: Paths.get(caminho)
+//            throw new RuntimeException();
             return alunos;
-        } catch (IOException ioException) {
+        } catch (IOException | RuntimeException exception) {
+            exception.printStackTrace();
             return Collections.emptyList();
+        } finally {
+            System.out.println("Execute o finally");
         }
     }
 
