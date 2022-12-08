@@ -18,14 +18,19 @@ public class AlunoService {
         Path caminho = new File(getClass()
                 .getResource("/alunos.txt")
                 .getFile()).toPath();
-
         try {
-            List<String> alunos = Files.readAllLines(Path.of("teste")); // Alternativa: Paths.get(caminho)
+            List<String> alunos = Files.readAllLines(caminho); // Alternativa: Paths.get(caminho)
             return alunos;
         } catch (IOException ioexception) {
             throw new RuntimeException("Arquivo não encontrado");
-//            return Collections.singletonList(String.valueOf(10 / 0)); // Retorna uma exceção aritimética
         }
+    }
+
+    public String findAluno(String nome) throws AlunoNaoEncontratoException {
+        return findAll().stream()
+                .filter(aluno -> aluno.equals(nome))
+                .findFirst()
+                .orElseThrow(() -> new AlunoNaoEncontratoException(nome)); // Podemos lançar uma nova exception, que vamos criar.
     }
 
 
