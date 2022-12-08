@@ -20,14 +20,11 @@ public class AlunoService {
                 .getFile()).toPath();
 
         try {
-            List<String> alunos = Files.readAllLines(caminho); // Alternativa: Paths.get(caminho)
-//            throw new RuntimeException();
+            List<String> alunos = Files.readAllLines(Path.of("teste")); // Alternativa: Paths.get(caminho)
             return alunos;
-        } catch (IOException | RuntimeException exception) {
-            exception.printStackTrace();
-            return Collections.emptyList();
-        } finally {
-            System.out.println("Execute o finally");
+        } catch (IOException ioexception) {
+            throw new RuntimeException("Arquivo não encontrado");
+//            return Collections.singletonList(String.valueOf(10 / 0));
         }
     }
 
